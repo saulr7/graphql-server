@@ -7,6 +7,7 @@ const app = express();
 app.use('/graphql', expressGraphQL.graphqlHTTP({
   graphiql: true,
   schema,
+  context: { uid: 'k19dj1pm88a' },
 
 }));
 
