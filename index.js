@@ -2,14 +2,18 @@ const express = require('express');
 const expressGraphQL = require('express-graphql');
 const schema = require('./schema/schema');
 
+const { graphqlHTTP } = expressGraphQL;
+
 const app = express();
 
-app.use('/graphql', expressGraphQL.graphqlHTTP({
-  graphiql: true,
-  schema,
-  context: { uid: 'k19dj1pm88a' },
-
-}));
+app.use(
+  '/graphql',
+  graphqlHTTP((req) => ({
+    schema,
+    graphiql: true,
+    context: { uid: 'jyklapsd1o33c', data: req.headers },
+  })),
+);
 
 const PORT = process.env.PORT || 3001;
 
